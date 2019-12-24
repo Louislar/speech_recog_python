@@ -1,0 +1,5 @@
+('/home/wmlab/CMU_try/try_python/build/testing_py/SphinxBase-0.6.1-py2.7-linux-x86_64.egg',
+ None,
+ set(['*.py', '*.pyc', '*.so', '*module.so', 'EGG-INFO']),
+ 'DATA',
+ [])

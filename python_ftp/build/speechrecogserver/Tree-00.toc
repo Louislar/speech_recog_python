@@ -1,0 +1,5 @@
+('/home/wmlab/speech_recog_python/python_ftp/build/speechrecogserver/SphinxBase-0.6.1-py2.7-linux-x86_64.egg',
+ None,
+ set(['*.py', '*.pyc', '*.so', '*module.so', 'EGG-INFO']),
+ 'DATA',
+ [])
