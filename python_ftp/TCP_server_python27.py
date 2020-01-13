@@ -40,6 +40,7 @@ class MultithreadingTCPServer:
                 sentence = message.decode()
                 print(sentence)
                 tmp_result = self._recog_func()
+                self._multi_recog_func()
                 print(tmp_result)
                 capitalizedSentence = sentence.upper()
                 # print(type(capitalizedSentence))
@@ -57,14 +58,27 @@ class MultithreadingTCPServer:
 
     def _recog_func(self, wav_file_path='./test_wwaavv.wav'):
         self.cmu_Sphinx_recognizer.wav_file = wav_file_path
-        recog_result = self.cmu_Sphinx_recognizer.recognize()
+        recog_result = self.cmu_Sphinx_recognizer.recognize(wav_file_path)
         out_str = recog_result + '\n' + recog_result +'\n' + recog_result +'\n'
         return out_str
+
+    def _multi_recog_func(self, wav_dir_path='./audio_dir/'):
+        self.cmu_Sphinx_recognizer.wav_dir = wav_dir_path
+        recog_result = self.cmu_Sphinx_recognizer.recog_multi_file(wav_dir_path)
+        # save recog result in txt
+        save_file_nm = 'recog_result.txt'
+        with open('./' + save_file_nm, 'w') as file_out: 
+            file_out.writelines(recog_result)
+            
+        # save correctness in txt
+        self.cmu_Sphinx_recognizer.check_correctness(recog_result)
+
+        pass
         
 
 if len(sys.argv) < 3:
     serverName = '140.115.54.22'
-    serverPort = 12001
+    serverPort = 12002
 else:
     serverName = sys.argv[1]
     serverPort = int(sys.argv[2])

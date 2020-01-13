@@ -5,7 +5,7 @@ from TCP_server_python27 import MultithreadingTCPServer
 
 class Speech_server():
     def __init__(self):
-        self.tcp_server_ip = '140.115.54.2'
+        self.tcp_server_ip = '140.115.54.22'
         self.tcp_server_port = 12000
 
         self.ftp_server = Ftp_server()

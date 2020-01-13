@@ -32,6 +32,9 @@ class CMU_Sphinx_recognizer():
         # self.wav_file = '/home/wmlab/CMU_try/testing_audio/testing_du_coffee_bag.wav'
         self.wav_file = '/home/wmlab/CMU_try/testing_audio/testing_karshi.wav'
         self.wav_dir = '/home/wmlab/CMU_try/testing_audio/3RD_sheng_kai/'
+        self.recog_order_nm = ['FM2', 'K他命', 'K他命k煙', 'K他命拉k', '一粒眠紅豆', '卡西同浴鹽', \
+            '卡西同類喵喵', '大麻', '安非他命', '安非他命吸食器', '搖頭丸', '毒咖啡包', \
+            '毒梅粉', '海洛因', '海洛因和注射器', '海洛因注射']
     
     def recognize(self, file_path_in):
         speech_rec = Decoder(hmm = self.model_dir, lm=self.lm_dir, dict=self.dict_dir)
@@ -56,8 +59,26 @@ class CMU_Sphinx_recognizer():
         for a in all_results:
             print('result: ' + a) 
         return all_results
+    
+    def check_correctness(self, recog_result):
+        # print(len(self.recog_order_nm))
+        correctness_list = []
+        for i in range(len(self.recog_order_nm)): 
+            cur_recog_result = recog_result[i]
+            cur_recog_result = cur_recog_result.split(' ')
+            correctness = \
+                [rlt == self.recog_order_nm[i] for rlt in cur_recog_result]
+            # print(correctness)
+            # print(any(correctness))
+            correctness_list.append(any(correctness))
+        correctness_list = [str(s) + '\n' for s in correctness_list]
+        print(correctness_list)
+        with open('./correctness_out.txt', 'w') as open_file: 
+            open_file.writelines(correctness_list)
+        return correctness_list
 
 if __name__ == "__main__":
     sp_recogzier = CMU_Sphinx_recognizer()
     # sp_recogzier.recognize(sp_recogzier.wav_file)
-    sp_recogzier.recog_multi_file(sp_recogzier.wav_dir)
+    recog_result = sp_recogzier.recog_multi_file(sp_recogzier.wav_dir)
+    sp_recogzier.check_correctness(recog_result)
