@@ -24,13 +24,15 @@ from sphinxbase import *
 class CMU_Sphinx_recognizer():
     def __init__(self):
         self.model_dir = '/home/wmlab/CMU_try/zh_broadcastnews_ptm256_8000/'
-        self.lm_dir = '/home/wmlab/CMU_try/try_python/6687.lm'
-        self.dict_dir = '/home/wmlab/CMU_try/try_python/6687.dic'
+        self.lm_dir = '/home/wmlab/speech_recog_python/ma_jie_exp/3256.lm'
+        self.dict_dir = '/home/wmlab/speech_recog_python/ma_jie_exp/3256.dic'
+        # self.lm_dir = '/home/wmlab/CMU_try/try_python/6687.lm'
+        # self.dict_dir = '/home/wmlab/CMU_try/try_python/6687.dic
         # self.lm_dir = '/home/wmlab/CMU_try/try_python/usable_version/0506.lm'
         # self.dict_dir = '/home/wmlab/CMU_try/try_python/usable_version/0506.dic'
         # self.wav_file = '/home/wmlab/CMU_try/testing_audio/testing003.wav'
         # self.wav_file = '/home/wmlab/CMU_try/testing_audio/testing_du_coffee_bag.wav'
-        self.wav_file = '/home/wmlab/speech_recog_python/CMU_try/testing_audio/testing_karshi.wav'
+        self.wav_file = '/home/wmlab/speech_recog_python/ma_jie_exp/hao_ni_ma.wav'
         self.wav_dir = '/home/wmlab/CMU_try/testing_audio/3RD_sheng_kai/'
         self.recog_order_nm = ['FM2', 'K他命', 'K他命k煙', 'K他命拉k', '一粒眠紅豆', '卡西同浴鹽', \
             '卡西同類喵喵', '大麻', '安非他命', '安非他命吸食器', '搖頭丸', '毒咖啡包', \
